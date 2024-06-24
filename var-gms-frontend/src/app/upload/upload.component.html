@@ -1,0 +1,38 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title text-center mb-4">VaR Calculator</h2>
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="file">CSV File:</label>
+        <input type="file" id="file" accept=".csv" (change)="onFileSelected($event)" class="form-control" required>
+        <div *ngIf="fileError" class="invalid-feedback d-block">
+          {{ fileError }}
+        </div>
+        <div *ngIf="uploadForm.get('file')?.invalid && uploadForm.get('file')?.touched" class="invalid-feedback">
+          File is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confidenceLevel">Confidence Level:</label>
+        <input type="number" id="confidenceLevel" formControlName="confidenceLevel" min="0" max="1" step="0.01" class="form-control" required>
+        <div *ngIf="uploadForm.get('confidenceLevel')?.invalid && uploadForm.get('confidenceLevel')?.touched" class="invalid-feedback">
+          Confidence level must be between 0.0 and 1.0.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="calculationType">Calculation Type:</label>
+        <select id="calculationType" formControlName="calculationType" class="form-control" required>
+          <option value="single">Single Trade</option>
+          <option value="portfolio">Portfolio</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="uploadForm.invalid">Calculate VaR</button>
+    </form>
+    <div *ngIf="valueAtRisk !== undefined" class="alert alert-success mt-3 text-center">
+      <h3>Value at Risk: {{ valueAtRisk }}</h3>
+    </div>
+    <div *ngIf="errorMessage !== undefined" class="alert alert-danger mt-3 text-center">
+      <h3>{{ errorMessage }}</h3>
+    </div>
+  </div>
+</div>

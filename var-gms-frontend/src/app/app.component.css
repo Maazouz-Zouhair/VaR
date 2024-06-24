@@ -1,0 +1,20 @@
+/* Add any global styles for your application here */
+.header {
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+.container {
+    padding-top: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  

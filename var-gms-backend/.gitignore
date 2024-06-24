@@ -1,0 +1,79 @@
+# Ignore build output directories
+/target/
+/out/
+/build/
+
+# Ignore Maven wrapper
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore IDE-specific files and directories
+.idea/
+/*.iml
+*.classpath
+*.project
+.settings/
+.vscode/
+
+# Ignore temporary files
+*.log
+*.tmp
+*.swp
+*~
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore configuration files
+/application.properties
+/application.yml
+
+# Ignore test reports
+/test-output/
+/surefire-reports/
+/jacoco/
+
+# Ignore IntelliJ IDEA plugin settings
+/.idea/libraries/
+
+# Ignore Node.js directories (in case you're using Node.js for any reason in your backend)
+/node_modules/
+
+# Ignore specific files or directories
+!.mvn/wrapper/maven-wrapper.jar
+!/src/main/resources/
+/src/main/resources/.gitkeep
+
+# Ignore file types
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore JetBrains Rider project files
+.idea/
+.idea/*
+.idea_modules/
+
+# Ignore build directories
+/bin/
+*/bin/
+*/out/
+!/src/main/resources/static/
+!/src/main/resources/public/
+!/src/main/resources/templates/
+!/src/main/resources/application.properties
+!/src/main/resources/application.yml
+
+# Ignore Eclipse project files
+.project
+.classpath
+.settings/
+
+# Ignore specific configuration files
+*.env
+.env.*
+.secret
+.secret.*
