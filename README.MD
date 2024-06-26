@@ -1,3 +1,11 @@
+## CSV File Format
+
+## <mark>The CSV file should contain historical values for trades in the following format<mark>
+
+    
+    Id,Value1,Value2,Value3,Value4,Value5,Value6,Value7,Value8,Value9,Value10
+    1,100,101,102,103,104,105,106,107,108,109
+An example CSV file (`trades.csv`) is included in the repository.
 # VaR Calculator Backend
 
 This is the backend service for calculating Value at Risk (VaR). It is implemented using Spring Boot.
@@ -31,18 +39,11 @@ The application will start at `http://localhost:8080`.
 
 ## API Endpoints
 
-### Calculate Single Trade VaR
+### Inference of Mode (SingleTrade/Portfolio):
 
-- **URL:** `POST /api/var/single-trade`
+- **URL:** `POST /api/var/calculate`
 - **Body:**
     - `file` (multipart/form-data): The CSV file containing historical values for a single trade.
-    - `confidenceLevel` (text): The confidence level for VaR calculation (e.g., 0.95).
-
-### Calculate Portfolio VaR
-
-- **URL:** `POST /api/var/portfolio`
-- **Body:**
-    - `file` (multipart/form-data): The CSV file containing historical values for multiple trades.
     - `confidenceLevel` (text): The confidence level for VaR calculation (e.g., 0.95).
 
 ## Dependencies
@@ -53,6 +54,7 @@ The application will start at `http://localhost:8080`.
 - jakarta.validation
 - org.hibernate.validator
 - org.apache.commons / commons-csv / version : 1.8
+- spring boot devtools
 
 # VaR Calculator Frontend
 
@@ -89,24 +91,9 @@ The application will start at `http://localhost:4200`.
 
 1. Open the application in your browser at `http://localhost:4200`.
 2. Upload the CSV file and specify the confidence level.
-3. Choose the calculation type (Single Trade or Portfolio).
 4. Click "Calculate VaR" to get the result.
 
 ## Dependencies
 
 - Angular 18
 - Bootstrap 
-
-## Example CSV File
-
-An example CSV file (`trades.csv`) is included in the repository.
-
-
-## CSV File Format
-
-The CSV file should contain historical values for trades in the following format:
-
-```csv
-Id,Value1,Value2,Value3,Value4,Value5,Value6,Value7,Value8,Value9,Value10
-1,100,101,102,103,104,105,106,107,108,109```
-
