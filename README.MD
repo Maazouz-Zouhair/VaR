@@ -6,6 +6,14 @@
     Id,Value1,Value2,Value3,Value4,Value5,Value6,Value7,Value8,Value9,Value10
     1,100,101,102,103,104,105,106,107,108,109
 An example CSV file (`trades.csv`) is included in the repository.
+## CSV File Format
+
+## <mark>The CSV file should contain historical values for trades in the following format<mark>
+
+    
+    Id,Value1,Value2,Value3,Value4,Value5,Value6,Value7,Value8,Value9,Value10
+    1,100,101,102,103,104,105,106,107,108,109
+An example CSV file (`trades.csv`) is included in the repository.
 # VaR Calculator Backend
 
 This is the backend service for calculating Value at Risk (VaR). It is implemented using Spring Boot.
