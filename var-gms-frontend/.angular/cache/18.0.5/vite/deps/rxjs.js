@@ -27,7 +27,7 @@ import {
   queueScheduler,
   range,
   using
-} from "./chunk-LMFWYZLC.js";
+} from "./chunk-7U7TPR7C.js";
 import {
   ArgumentOutOfRangeError,
   AsyncSubject,
@@ -62,7 +62,7 @@ import {
   combineLatest,
   combineLatestAll,
   combineLatestWith,
-  concat,
+  concat2 as concat,
   concatAll,
   concatMap,
   concatMapTo,
@@ -174,7 +174,7 @@ import {
   zip,
   zipAll,
   zipWith
-} from "./chunk-RVQ3RH6Y.js";
+} from "./chunk-MOIZKQG5.js";
 export {
   ArgumentOutOfRangeError,
   AsyncSubject,

@@ -18,6 +18,32 @@ public class VaRServiceTest {
     private final VaRService vaRService = new VaRService();
 
     @Test
+    public void testVaRAtLowConfidenceLevel() {
+        // Given
+        List<Double> historicalValues = Arrays.asList(100.0, 101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0, 109.0);
+        double confidenceLevel = 0.01;
+
+        // When
+        double var = vaRService.calculateVaR(historicalValues, confidenceLevel);
+
+        // Then
+        assertEquals(100.0, var);
+    }
+
+    @Test
+    public void testVaRAtHighConfidenceLevel() {
+        // Given
+        List<Double> historicalValues = Arrays.asList(100.0, 101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0, 109.0);
+        double confidenceLevel = 0.99;
+
+        // When
+        double var = vaRService.calculateVaR(historicalValues, confidenceLevel);
+
+        // Then
+        assertEquals(109.0, var);
+    }
+    
+    @Test
     public void testCalculateVaR() {
         List<Double> historicalValues = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0);
         double confidenceLevel = 0.95;

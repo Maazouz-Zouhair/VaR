@@ -54,32 +54,14 @@ export class UploadComponent {
         file: formValues.file,
         confidenceLevel: formValues.confidenceLevel
       };
-
-      if (formValues.calculationType === 'single') {
-        this.calculateSingleTradeVaR(request);
-      } else if (formValues.calculationType === 'portfolio') {
-        this.calculatePortfolioVaR(request);
-      } else {
-        this.errorMessage = 'Invalid calculation type';
-      }
+      this.calculateVaR(request);
     } else {
       this.errorMessage = 'Please provide a valid file and confidence level';
     }
   }
 
-  calculateSingleTradeVaR(request: VaRRequest) {
-    this.varService.calculateSingleTradeVaR(request).subscribe(
-      (response: VaRResponse) => {
-        this.valueAtRisk = response.valueAtRisk;
-      },
-      (error: string) => {
-        this.errorMessage = error;
-      }
-    );
-  }
-
-  calculatePortfolioVaR(request: VaRRequest) {
-    this.varService.calculatePortfolioVaR(request).subscribe(
+  calculateVaR(request: VaRRequest) {
+    this.varService.calculateVaR(request).subscribe(
       (response: VaRResponse) => {
         this.valueAtRisk = response.valueAtRisk;
       },

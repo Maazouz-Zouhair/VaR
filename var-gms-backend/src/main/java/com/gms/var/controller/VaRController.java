@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.gms.var.dto.VaRRequest;
 import com.gms.var.dto.VaRResponse;
 import com.gms.var.model.Portfolio;
@@ -31,26 +33,27 @@ public class VaRController {
 
     @Autowired
     private CSVService csvService;
+    
+    private static final Logger logger = LoggerFactory.getLogger(VaRController.class);
 
-    @PostMapping("/single-trade")
-    public VaRResponse calculateSingleTradeVaR(@Valid @ModelAttribute VaRRequest request) throws IOException {
+    @PostMapping("/calculate")
+    public VaRResponse calculateVaR(@Valid @ModelAttribute VaRRequest request) throws IOException {
         List<Trade> trades = csvService.parseCSV(request.getFile());
-        if (trades.size() != 1) {
-            throw new IllegalArgumentException("The CSV file must contain data for exactly one trade.");
-        }
-        double valueAtRisk = vaRService.calculateVaR(trades.get(0).getHistoricalValues(), request.getConfidenceLevel());
-        return new VaRResponse(valueAtRisk);
-    }
-
-    @PostMapping("/portfolio")
-    public VaRResponse calculatePortfolioVaR(@Valid @ModelAttribute VaRRequest request) throws IOException {
-        List<Trade> trades = csvService.parseCSV(request.getFile());
+        
         if (trades.isEmpty()) {
             throw new IllegalArgumentException("The CSV file must contain data for at least one trade.");
         }
-        Portfolio portfolio = new Portfolio();
-        portfolio.setTrades(trades);
-        double valueAtRisk = vaRService.calculatePortfolioVaR(portfolio, request.getConfidenceLevel());
+
+        double valueAtRisk;
+        if (trades.size() == 1) {
+        	logger.debug("Received request for single trade VaR calculation.");
+            valueAtRisk = vaRService.calculateVaR(trades.get(0).getHistoricalValues(), request.getConfidenceLevel());
+        } else {
+        	logger.debug("Received request for portfolio VaR calculation.");
+            Portfolio portfolio = new Portfolio();
+            portfolio.setTrades(trades);
+            valueAtRisk = vaRService.calculatePortfolioVaR(portfolio, request.getConfidenceLevel());
+        }
         return new VaRResponse(valueAtRisk);
     }
 }

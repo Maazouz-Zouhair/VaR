@@ -19,13 +19,6 @@
           Confidence level must be between 0.0 and 1.0.
         </div>
       </div>
-      <div class="form-group">
-        <label for="calculationType">Calculation Type:</label>
-        <select id="calculationType" formControlName="calculationType" class="form-control" required>
-          <option value="single">Single Trade</option>
-          <option value="portfolio">Portfolio</option>
-        </select>
-      </div>
       <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="uploadForm.invalid">Calculate VaR</button>
     </form>
     <div *ngIf="valueAtRisk !== undefined" class="alert alert-success mt-3 text-center">

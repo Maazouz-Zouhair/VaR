@@ -13,23 +13,12 @@ export class VaRService {
 
   constructor(private http: HttpClient) { }
 
-  calculateSingleTradeVaR(request: VaRRequest): Observable<VaRResponse> {
+  calculateVaR(request: VaRRequest): Observable<VaRResponse> {
     const formData = new FormData();
     formData.append('file', request.file);
     formData.append('confidenceLevel', request.confidenceLevel.toString());
 
-    return this.http.post<VaRResponse>(`${this.apiUrl}/single-trade`, formData)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  calculatePortfolioVaR(request: VaRRequest): Observable<VaRResponse> {
-    const formData = new FormData();
-    formData.append('file', request.file);
-    formData.append('confidenceLevel', request.confidenceLevel.toString());
-
-    return this.http.post<VaRResponse>(`${this.apiUrl}/portfolio`, formData)
+    return this.http.post<VaRResponse>(`${this.apiUrl}/calculate`, formData)
       .pipe(
         catchError(this.handleError)
       );
