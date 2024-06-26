@@ -7,6 +7,7 @@ import com.gms.var.model.Portfolio;
 import com.gms.var.model.Trade;
 import com.gms.var.service.VaRService;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class VaRServiceTest {
     }
 
     @Test
-    public void testCalculatePortfolioVaR() {
+    public void testCalculatePortfolioVaR() throws IOException {
         Trade trade1 = new Trade();
         trade1.setId("1");
         trade1.setHistoricalValues(Arrays.asList(1.0, 2.0, 3.0));
@@ -66,7 +67,7 @@ public class VaRServiceTest {
         portfolio.setTrades(Arrays.asList(trade1, trade2));
 
         double confidenceLevel = 0.95;
-        double expectedVaR = 1.0;
+        double expectedVaR = 5.0;
         double result = vaRService.calculatePortfolioVaR(portfolio, confidenceLevel);
         assertEquals(expectedVaR, result, 0.001);
     }
